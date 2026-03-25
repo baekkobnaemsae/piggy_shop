@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>굿즈샵</title>
+
+    <!-- ✅ jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- firebase 연동 -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+        import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB2LWo9fYE3hjjaZ1sLR8dO0MhpHyWA7AM",
+            authDomain: "product-sales-e7675.firebaseapp.com",
+            projectId: "product-sales-e7675",
+            storageBucket: "product-sales-e7675.firebasestorage.app",
+            messagingSenderId: "809565552551",
+            appId: "1:809565552551:web:2eab8229b42b109a574082"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 👉 전역으로 연결
+        window.db = db;
+        window.addDoc = addDoc;
+        window.collection = collection;
+    </script>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 🛒 상품 목록 -->
+    <div id="shop">
+        <h1>굿즈샵</h1>
+
+        <div class="item">
+            <h3>키링</h3>
+            수량: <input type="number" id="keyring-qty" value="1" min="1">
+            <button class="add-cart" data-type="keyring">담기</button>
+        </div>
+
+        <div class="item">
+            <h3>그립톡</h3>
+            <select id="griptok-option">
+                <option value="">옵션 선택</option>
+                <option value="그립톡">부착형</option>
+                <option value="맥세이프">맥세이프</option>
+            </select>
+            수량: <input type="number" id="griptok-qty" value="1" min="1">
+            <button class="add-cart" data-type="griptok">담기</button>
+        </div>
+
+        <div class="item">
+            <h3>티셔츠</h3>
+            <select id="tshirt-type">
+                <option value="">종류 선택</option>
+                <option value="덕코티">덕코티</option>
+                <option value="일코티">일코티</option>
+            </select>
+
+            <select id="tshirt-size">
+                <option value="">사이즈</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>2XL</option>
+                <option>3XL</option>
+            </select>
+
+            수량: <input type="number" id="tshirt-qty" value="1" min="1">
+            <button class="add-cart" data-type="tshirt">담기</button>
+        </div>
+
+        <button id="goCartBtn">🛒 장바구니 보기</button>
+    </div>
+
+    <!-- 🧺 장바구니 -->
+    <div id="cartPage" class="hidden">
+        <h1>장바구니</h1>
+        <ul id="cartList"></ul>
+
+        <button id="goOrderBtn">최종 구매</button>
+        <button id="backShopBtn">뒤로</button>
+    </div>
+
+    <!-- 🚚 배송 -->
+    <div id="orderPage" class="hidden">
+        <h1>배송 정보</h1>
+
+        <input id="name" placeholder="이름"><br><br>
+        <input id="phone" placeholder="연락처"><br><br>
+        <input id="birth" placeholder="생년월일"><br><br>
+        <input id="address" placeholder="반택 받을 GS편의점"><br><br>
+
+        <button id="submitBtn">주문 완료</button>
+        <button id="backCartBtn">뒤로</button>
+    </div>
+
+    <!-- 🎉 완료 -->
+    <div id="completePage" class="hidden">
+        <h1>주문이 완료되었습니다.</h1>
+        <button id="homeBtn">초기 화면으로 이동</button>
+    </div>
+
+    <script>
+        let cart = [];
+
+        $(document).ready(function () {
+
+            // 🛒 장바구니 담기
+            $(".add-cart").click(function () {
+
+                const type = $(this).data("type");
+                let newItem = {};
+
+                if (type === 'keyring') {
+                    newItem = {
+                        name: "키링",
+                        qty: Number($("#keyring-qty").val())
+                    };
+                }
+
+                if (type === 'griptok') {
+                    const option = $("#griptok-option").val();
+                    if (!option) return alert("옵션 선택!");
+
+                    newItem = {
+                        name: "그립톡",
+                        option,
+                        qty: Number($("#griptok-qty").val())
+                    };
+                }
+
+                if (type === 'tshirt') {
+                    const t = $("#tshirt-type").val();
+                    const s = $("#tshirt-size").val();
+                    if (!t || !s) return alert("옵션 선택!");
+
+                    newItem = {
+                        name: "티셔츠",
+                        type: t,
+                        size: s,
+                        qty: Number($("#tshirt-qty").val())
+                    };
+                }
+
+                const existing = cart.find(item => {
+
+                    if (item.name !== newItem.name) return false;
+
+                    if (item.name === "키링") return true;
+
+                    if (item.name === "그립톡") {
+                        return item.option === newItem.option;
+                    }
+
+                    if (item.name === "티셔츠") {
+                        return item.type === newItem.type && item.size === newItem.size;
+                    }
+
+                });
+
+                if (existing) {
+                    existing.qty += newItem.qty;
+                } else {
+                    cart.push(newItem);
+                }
+
+                alert("장바구니 담김!");
+            });
+
+            // 🧺 장바구니 보기
+            $("#goCartBtn").click(function () {
+                $("#shop").addClass("hidden");
+                $("#cartPage").removeClass("hidden");
+
+                const list = $("#cartList");
+                list.empty();
+
+                cart.forEach(i => {
+                    list.append(`<li>${JSON.stringify(i)}</li>`);
+                });
+            });
+
+            // 🔙 상품으로
+            $("#backShopBtn").click(function () {
+                $("#shop").removeClass("hidden");
+                $("#cartPage").addClass("hidden");
+                $("#orderPage").addClass("hidden");
+            });
+
+            // 🚚 주문 페이지
+            $("#goOrderBtn").click(function () {
+                $("#shop, #cartPage").addClass("hidden");
+                $("#orderPage").removeClass("hidden");
+            });
+
+            // 🔙 장바구니로
+            $("#backCartBtn").click(function () {
+                $("#orderPage").addClass("hidden");
+                $("#cartPage").removeClass("hidden");
+            });
+
+            // 📦 주문 완료
+            $("#submitBtn").click(async function () {
+
+                const order = {
+                    cart,
+                    user: {
+                        name: $("#name").val(),
+                        phone: $("#phone").val(),
+                        birth: $("#birth").val(),
+                        address: $("#address").val()
+                    },
+                    createdAt: new Date()
+                };
+
+                try {
+                    await addDoc(collection(db, "orders"), order);
+
+                    alert("주문 저장 완료!");
+
+                    $("#orderPage").addClass("hidden");
+                    $("#completePage").removeClass("hidden");
+
+                } catch (e) {
+                    alert("저장 실패");
+                    console.error(e);
+                }
+
+            });
+
+            // 🏠 초기화
+            $("#homeBtn").click(function () {
+                location.reload();
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
