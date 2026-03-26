@@ -5,7 +5,9 @@
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: 500;
     font-display: swap;
+}
 
+html {
     font-size: clamp(15px, 2.5vw, 20px);
 }
 
@@ -13,16 +15,12 @@ body {
     font-family: 'GMarketSans';
     margin: 0;
     display: flex;
-    width: 100%;
     justify-content: center;
-    /* align-items: center; */
     background: white;
-
-    font-size: clamp(15px, 2.5vw, 20px);
 }
 
 .container {
-    width: 100%;
+    width: 50vw;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -37,13 +35,13 @@ body {
 .sale_info {
     /* width: fit-content; */
     margin-left: 5px;
-    font-size: 15px;
+    font-size: 1vw;
     color: rgb(151, 151, 151);
 }
 
 .info_text {
     margin-left: 30px;
-    font-size: 15px;
+    font-size: 1vw;
 }
 
 .info_box {
@@ -57,7 +55,7 @@ body {
 .header {
     display: flex;
     font-family: "Mona12";
-    font-size: 20px;
+    font-size: 1.3vw;
     background: #ffffff;
     justify-content: center;    /* 가로 가운데 */
     align-items: center;        /* 세로 가운데 */
@@ -67,7 +65,7 @@ body {
 }
 
 .title_img {
-    height: 35px;
+    height: 2.5vw;
 }
 
 .product_title {
@@ -80,7 +78,7 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    height: 40px;
+    height: 3vw;
     border-bottom: 1px solid #d3d3d3;
     background: white;
 }
@@ -122,13 +120,13 @@ body {
     background: #353535;
     color: white;
     border: none;
-    font-size: 16px;
+    font-size: 1vw;
     border-radius: 5px;
 }
 
-.info_menu {
+/* .info_menu {
     margin-bottom: 300px;
-}
+} */
 
 /* 어두운 배경 */
 .overlay {
