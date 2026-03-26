@@ -11,13 +11,14 @@ body {
     font-family: 'GMarketSans';
     margin: 0;
     display: flex;
+    width: 100%;
     justify-content: center;
     /* align-items: center; */
     background: white;
 }
 
 .container {
-    width: 1000px;
+    width: 100%;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
