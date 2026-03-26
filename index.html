@@ -3,7 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>굿즈샵</title>
+    <title>🐷 Shop</title>
+
+    <!-- CSS 연결 -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- head에 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- ✅ jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -34,238 +40,304 @@
         window.addDoc = addDoc;
         window.collection = collection;
     </script>
-
-    <style>
-        body {
-            font-family: sans-serif;
-            padding: 20px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .item {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        button {
-            margin-top: 10px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body>
-
-    <!-- 🛒 상품 목록 -->
-    <div id="shop">
-        <h1>굿즈샵</h1>
-
-        <div class="item">
-            <h3>키링</h3>
-            수량: <input type="number" id="keyring-qty" value="1" min="1">
-            <button class="add-cart" data-type="keyring">담기</button>
+    <div class="container">
+        <div class="header">
+            <img class="title_img" src="img/face.png" alt="제목">
+            <p style="margin: 15px;">1000일 기념 굿즈 판매</p>
+            <img class="title_img" src="img/face.png" alt="제목">
         </div>
 
-        <div class="item">
-            <h3>그립톡</h3>
-            <select id="griptok-option">
-                <option value="">옵션 선택</option>
-                <option value="그립톡">부착형</option>
-                <option value="맥세이프">맥세이프</option>
-            </select>
-            수량: <input type="number" id="griptok-qty" value="1" min="1">
-            <button class="add-cart" data-type="griptok">담기</button>
+        <div style="margin-bottom: 10px;">
+            <img class="main_img" src="/img/main.png" alt="굿즈상품">
+        </div>
+        <div class="product_title">
+            <p style="width: fit-content; margin: 5px; font-size: 25px;">키링, 그립톡, 티셔츠 (3종)</p>
+            <div class="info_box">
+                <div style="display: flex;">
+                    <p class="sale_info">판매 기간</p>
+                    <p class="info_text">2026-04-06 ~ 2026-04-13</p>
+                </div>
+                <div style="display: flex;">
+                    <p class="sale_info">결제 방식</p>
+                    <p class="info_text">무통장 입금</p>
+                </div>
+            </div>
         </div>
 
-        <div class="item">
-            <h3>티셔츠</h3>
-            <select id="tshirt-type">
-                <option value="">종류 선택</option>
-                <option value="덕코티">덕코티</option>
-                <option value="일코티">일코티</option>
-            </select>
+        <div class="menu_div">
+            <ul class="menu_list">
+                <li data-type="product" class="active">상품정보</li>
+                <li data-type="ask">문의정보</li>
+            </ul>
 
-            <select id="tshirt-size">
-                <option value="">사이즈</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-                <option>2XL</option>
-                <option>3XL</option>
-            </select>
+        </div>
+        <div class="info_menu" id="product_menu">
+            <img class="product_main" src="/img/일코티.png" alt="굿즈상품">
 
-            수량: <input type="number" id="tshirt-qty" value="1" min="1">
-            <button class="add-cart" data-type="tshirt">담기</button>
+            <h1>키링</h1>
+            <h1>그립톡</h1>
+            <h1>덕코티</h1>
+            <h1>일코티</h1>
         </div>
 
-        <button id="goCartBtn">🛒 장바구니 보기</button>
+        <div class="info_menu" id="ask_menu" style="display: none;">
+            <br>
+            <!-- <h3>주문 확인이나 변경, 취소를 원하실 경우 <br> 아래 경로로 편하게 문의해 주세요. <br> 신속하게 처리해 드리겠습니다.</h3> -->
+            <!-- <h4>Q1. 주문한 내역을 확인하고 싶어요.</h4>
+            <h4>Q2. 주문 정보를 수정하고 싶어요.</h4> -->
+            <h3>📢 상품, 배송, 결제 관련 문의는 아래 경로로 문의 부탁드립니다.</h3>
+            <br>
+            <div style="margin-left: 10px;">
+                <div style="display: flex;">
+                    <p><i class="fa-solid fa-comment"></i> 카카오톡 : 
+                        <a class="ask_url" href="https://open.kakao.com/o/sgdD1Bci" target="_blank">배꼽냄새 오픈채팅</a>
+                    </p>
+                </div>
+                <div style="display: flex;">
+                    <p><i class="fa-brands fa-instagram"></i> 인스타그램 : 
+                        <a class="ask_url" href="https://www.instagram.com/baekkobnaemsae?igsh=MTJyb20wc3hpbmVldQ==" target="_blank">@baekkobnaemsae</a>&nbsp;/
+                        <a class="ask_url" href="https://www.instagram.com/zoxsaui?igsh=MXhjNHF6Z2R4a2swaw==" target="_blank">@zoxsaui</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart_button">
+            <button id="product_info">구매하기</button>
+        </div>
     </div>
 
-    <!-- 🧺 장바구니 -->
-    <div id="cartPage" class="hidden">
-        <h1>장바구니</h1>
-        <ul id="cartList"></ul>
+    <div class="overlay"></div>
 
-        <button id="goOrderBtn">최종 구매</button>
-        <button id="backShopBtn">뒤로</button>
-    </div>
+    <div class="bottom_sheet">
+        <div class="sheet_header">
+            <span>상품 선택</span>
+            <button class="close_btn"></button>
+        </div>
 
-    <!-- 🚚 배송 -->
-    <div id="orderPage" class="hidden">
-        <h1>배송 정보</h1>
+        <div class="sheet_content">
+            <div class="product_option_area">
 
-        <input id="name" placeholder="이름"><br><br>
-        <input id="phone" placeholder="연락처"><br><br>
-        <input id="birth" placeholder="생년월일"><br><br>
-        <input id="address" placeholder="반택 받을 GS편의점"><br><br>
+                <!-- 키링 -->
+                <div class="product_item">
+                    <h3>키링 - 6,000원</h3>
+                    <div class="quantity_box">
+                        <button class="minus">-</button>
+                        <span class="qty">1</span>
+                        <button class="plus">+</button>
+                    </div>
+                    <button class="add_cart">담기</button>
+                </div>
 
-        <button id="submitBtn">주문 완료</button>
-        <button id="backCartBtn">뒤로</button>
-    </div>
+                <!-- 그립톡 -->
+                <div class="product_item">
+                    <h3>그립톡 - 3,500원</h3>
 
-    <!-- 🎉 완료 -->
-    <div id="completePage" class="hidden">
-        <h1>주문이 완료되었습니다.</h1>
-        <button id="homeBtn">초기 화면으로 이동</button>
+                    <select class="option">
+                        <option value="">옵션 선택</option>
+                        <option value="부착형">부착형 + 2,000원</option>
+                        <option value="맥세이프">맥세이프 + 5,000원</option>
+                    </select>
+
+                    <div class="quantity_box">
+                        <button class="minus">-</button>
+                        <span class="qty">1</span>
+                        <button class="plus">+</button>
+                    </div>
+
+                    <button class="add_cart">담기</button>
+                </div>
+
+                <!-- 티셔츠 -->
+                <div class="product_item">
+                    <h3>티셔츠 - 32,000원</h3>
+
+                    <select class="option type">
+                        <option value="">종류 선택</option>
+                        <option value="일코티">일코티</option>
+                        <option value="1000일티">1000일이나 버텼티 + 5,000원</option>
+                    </select>
+
+                    <select class="option size">
+                        <option value="">사이즈 선택</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                        <option>2XL</option>
+                        <option>3XL</option>
+                    </select>
+
+                    <div class="quantity_box">
+                        <button class="minus">-</button>
+                        <span class="qty">1</span>
+                        <button class="plus">+</button>
+                    </div>
+
+                    <button class="add_cart">담기</button>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <!-- 장바구니 영역 -->
+            <div class="cart_list">
+                <h3>장바구니</h3>
+                <ul id="cart_items"></ul>
+
+                <div class="total_price">
+                    총 금액: <span id="total_price">0</span>원
+                </div>
+            </div>
+        </div>
+
+        <div class="product_buy">
+            <button id="buy_button">이거 어디감</button>
+        </div>
     </div>
 
     <script>
-        let cart = [];
-
         $(document).ready(function () {
 
-            // 🛒 장바구니 담기
-            $(".add-cart").click(function () {
+            $('.menu_list li').click(function () {
+                const type = $(this).data('type');
 
-                const type = $(this).data("type");
-                let newItem = {};
+                // 탭 active 처리
+                $('.menu_list li').removeClass('active');
+                $(this).addClass('active');
 
-                if (type === 'keyring') {
-                    newItem = {
-                        name: "키링",
-                        qty: Number($("#keyring-qty").val())
-                    };
-                }
+                $('#product_menu, #ask_menu').hide();
+                $('#' + type + '_menu').show();
+            });
 
-                if (type === 'griptok') {
-                    const option = $("#griptok-option").val();
-                    if (!option) return alert("옵션 선택!");
+            // 구매하기 버튼 클릭
+            $('#product_info').click(function () {
+                $('.overlay').fadeIn(200);
+                $('.bottom_sheet').addClass('active');
+            });
 
-                    newItem = {
-                        name: "그립톡",
-                        option,
-                        qty: Number($("#griptok-qty").val())
-                    };
-                }
+            // 닫기 버튼 클릭
+            $('.close_btn, .overlay').click(function () {
+                $('.overlay').fadeOut(200);
+                $('.bottom_sheet').removeClass('active');
+            });
 
-                if (type === 'tshirt') {
-                    const t = $("#tshirt-type").val();
-                    const s = $("#tshirt-size").val();
-                    if (!t || !s) return alert("옵션 선택!");
+            // 수량 버튼
+            $('.plus').click(function () {
+                let qty = $(this).siblings('.qty');
+                qty.text(parseInt(qty.text()) + 1);
+            });
 
-                    newItem = {
-                        name: "티셔츠",
-                        type: t,
-                        size: s,
-                        qty: Number($("#tshirt-qty").val())
-                    };
-                }
+            $('.minus').click(function () {
+                let qty = $(this).siblings('.qty');
+                let current = parseInt(qty.text());
+                if (current > 1) qty.text(current - 1);
+            });
 
-                const existing = cart.find(item => {
+            // 총 금액 계산
+            function updateTotal() {
+                let total = 0;
 
-                    if (item.name !== newItem.name) return false;
-
-                    if (item.name === "키링") return true;
-
-                    if (item.name === "그립톡") {
-                        return item.option === newItem.option;
-                    }
-
-                    if (item.name === "티셔츠") {
-                        return item.type === newItem.type && item.size === newItem.size;
-                    }
-
+                $('#cart_items li').each(function () {
+                    const price = parseInt($(this).data('price'));
+                    const qty = parseInt($(this).data('qty'));
+                    total += price * qty;
                 });
 
-                if (existing) {
-                    existing.qty += newItem.qty;
-                } else {
-                    cart.push(newItem);
+                $('#total_price').text(total.toLocaleString());
+            }
+
+            // 장바구니 담기
+            $('.add_cart').click(function () {
+
+                const parent = $(this).closest('.product_item');
+                const name = parent.find('h3').text();
+                let qty = parseInt(parent.find('.qty').text());
+
+                let optionText = '';
+                let price = parseInt(parent.find('.price').text());
+
+                // 키링
+                if (name === '키링') {
+                    optionText = '옵션 없음';
+                    price = 6000;
                 }
 
-                alert("장바구니 담김!");
-            });
+                // 그립톡
+                if (name === '그립톡') {
+                    const opt = parent.find('.option').val();
+                    if (!opt) {
+                        alert('옵션 선택하세요');
+                        return;
+                    }
 
-            // 🧺 장바구니 보기
-            $("#goCartBtn").click(function () {
-                $("#shop").addClass("hidden");
-                $("#cartPage").removeClass("hidden");
+                    optionText = opt;
+                    price = (opt === '부착형') ? 5500 : 8500;
+                }
 
-                const list = $("#cartList");
-                list.empty();
+                // 티셔츠
+                if (name === '티셔츠') {
+                    const type = parent.find('.type').val();
+                    const size = parent.find('.size').val();
 
-                cart.forEach(i => {
-                    list.append(`<li>${JSON.stringify(i)}</li>`);
+                    if (!type || !size) {
+                        alert('옵션 선택하세요');
+                        return;
+                    }
+
+                    optionText = type + ' / ' + size;
+                    price = (type === '1000일티') ? 37000 : 32000;
+                }
+
+                const key = name + '_' + optionText;
+
+                let found = false;
+
+                // 같은 상품 있으면 수량 합치기
+                $('#cart_items li').each(function () {
+                    if ($(this).data('key') === key) {
+                        let currentQty = parseInt($(this).data('qty'));
+                        let newQty = currentQty + qty;
+
+                        let currentPrice = parseInt($(this).data('price'));
+                        let newPrice = price * newQty;
+                        console.log("현재가격 : ", currentPrice);
+                        console.log("현재개수 : ", newQty);
+                        console.log("가격 : ", price);
+
+                        $(this).data('qty', newQty);
+                        $(this).find('.qty_text').text(newQty);
+                        $(this).find('.price_text').text(newPrice);
+
+                        found = true;
+                    }
                 });
-            });
 
-            // 🔙 상품으로
-            $("#backShopBtn").click(function () {
-                $("#shop").removeClass("hidden");
-                $("#cartPage").addClass("hidden");
-                $("#orderPage").addClass("hidden");
-            });
-
-            // 🚚 주문 페이지
-            $("#goOrderBtn").click(function () {
-                $("#shop, #cartPage").addClass("hidden");
-                $("#orderPage").removeClass("hidden");
-            });
-
-            // 🔙 장바구니로
-            $("#backCartBtn").click(function () {
-                $("#orderPage").addClass("hidden");
-                $("#cartPage").removeClass("hidden");
-            });
-
-            // 📦 주문 완료
-            $("#submitBtn").click(async function () {
-
-                const order = {
-                    cart,
-                    user: {
-                        name: $("#name").val(),
-                        phone: $("#phone").val(),
-                        birth: $("#birth").val(),
-                        address: $("#address").val()
-                    },
-                    createdAt: new Date()
-                };
-
-                try {
-                    await addDoc(collection(db, "orders"), order);
-
-                    alert("주문 저장 완료!");
-
-                    $("#orderPage").addClass("hidden");
-                    $("#completePage").removeClass("hidden");
-
-                } catch (e) {
-                    alert("저장 실패");
-                    console.error(e);
+                // 없으면 새로 추가
+                if (!found) {
+                    $('#cart_items').append(`
+                      <li data-key="${key}" data-price="${price}" data-qty="${qty}">
+                          <span>
+                              ${name} / ${optionText} / 
+                              수량: <span class="qty_text">${qty}</span>
+                              <span class="price_text">(${price.toLocaleString()}원)</span>
+                          </span>
+                          <button class="delete_btn">삭제</button>
+                      </li>
+                  `);
                 }
 
+                updateTotal();
             });
 
-            // 🏠 초기화
-            $("#homeBtn").click(function () {
-                location.reload();
+            // 삭제 버튼
+            $(document).on('click', '.delete_btn', function () {
+                $(this).closest('li').remove();
+                updateTotal();
             });
-
         });
     </script>
 
