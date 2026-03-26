@@ -14,32 +14,6 @@
     <!-- ✅ jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- firebase 연동 -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-        import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyB2LWo9fYE3hjjaZ1sLR8dO0MhpHyWA7AM",
-            authDomain: "product-sales-e7675.firebaseapp.com",
-            projectId: "product-sales-e7675",
-            storageBucket: "product-sales-e7675.firebasestorage.app",
-            messagingSenderId: "809565552551",
-            appId: "1:809565552551:web:2eab8229b42b109a574082"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // 👉 전역으로 연결
-        window.db = db;
-        window.addDoc = addDoc;
-        window.collection = collection;
-    </script>
 </head>
 
 <body>
