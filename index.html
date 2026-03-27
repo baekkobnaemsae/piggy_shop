@@ -2,7 +2,7 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
     <title>🐷 Shop</title>
 
     <!-- CSS 연결 -->
@@ -18,9 +18,9 @@
 <body>
     <div class="container">
         <div class="header">
-            <img class="title_img" src="img/face.png" alt="제목">
-            <p style="margin: 15px;">1000일 기념 굿즈 판매</p>
-            <img class="title_img" src="img/face.png" alt="제목">
+            <img class="title_img" src="img/pig.png" alt="제목">
+            <p class="title_txt">1000일 기념 굿즈 판매</p>
+            <img class="title_img" src="img/pig2.png" alt="제목">
         </div>
 
         <div style="margin-bottom: 10px;">
@@ -79,7 +79,7 @@
         </div>
 
         <div class="cart_button">
-            <button id="product_info">구매하기</button>
+            <button id="cart_info">구매하기</button>
         </div>
     </div>
 
@@ -96,60 +96,82 @@
 
                 <!-- 키링 -->
                 <div class="product_item">
-                    <h3>키링 - 6,000원</h3>
-                    <div class="quantity_box">
-                        <button class="minus">-</button>
-                        <span class="qty">1</span>
-                        <button class="plus">+</button>
+                    <div class="product_info">
+                        <div class="info_txt">
+                            <h3 class="product_txt">키링</h3>
+                            <span class="price_txt">6,000원</span>
+                        </div>
+                        <div class="quantity_box">
+                            <button class="minus">-</button>
+                            <span class="qty">1</span>
+                            <button class="plus">+</button>
+                        </div>
                     </div>
-                    <button class="add_cart">담기</button>
+                    <div class="item_bottom">
+                        <div class="option_choose"></div>
+                        <button class="add_cart">담기</button>
+                    </div>
                 </div>
 
                 <!-- 그립톡 -->
                 <div class="product_item">
-                    <h3>그립톡 - 3,500원</h3>
-
-                    <select class="option">
-                        <option value="">옵션 선택</option>
-                        <option value="부착형">부착형 + 2,000원</option>
-                        <option value="맥세이프">맥세이프 + 5,000원</option>
-                    </select>
-
-                    <div class="quantity_box">
-                        <button class="minus">-</button>
-                        <span class="qty">1</span>
-                        <button class="plus">+</button>
+                    <div class="product_info">
+                        <div class="info_txt">
+                            <h3 class="product_txt">그립톡</h3>
+                            <span class="price_txt">3,500원</span>
+                        </div>
+                        <div class="quantity_box">
+                            <button class="minus">-</button>
+                            <span class="qty">1</span>
+                            <button class="plus">+</button>
+                        </div>
                     </div>
 
-                    <button class="add_cart">담기</button>
+                    <div class="item_bottom">
+                        <div class="option_choose">
+                            <select class="option">
+                                <option value="">- 옵션 선택 -</option>
+                                <option value="부착형">부착형 + 2,000원</option>
+                                <option value="맥세이프">맥세이프 + 5,000원</option>
+                            </select>
+                        </div>
+                        <button class="add_cart">담기</button>
+                    </div>
                 </div>
 
                 <!-- 티셔츠 -->
                 <div class="product_item">
-                    <h3>티셔츠 - 32,000원</h3>
-
-                    <select class="option type">
-                        <option value="">종류 선택</option>
-                        <option value="일코티">일코티</option>
-                        <option value="1000일티">1000일이나 버텼티 + 5,000원</option>
-                    </select>
-
-                    <select class="option size">
-                        <option value="">사이즈 선택</option>
-                        <option>M</option>
-                        <option>L</option>
-                        <option>XL</option>
-                        <option>2XL</option>
-                        <option>3XL</option>
-                    </select>
-
-                    <div class="quantity_box">
-                        <button class="minus">-</button>
-                        <span class="qty">1</span>
-                        <button class="plus">+</button>
+                    <div class="product_info">
+                        <div class="info_txt">
+                            <h3 class="product_txt">티셔츠</h3>
+                            <span class="price_txt">32,000원</span>
+                        </div>
+                        <div class="quantity_box">
+                            <button class="minus">-</button>
+                            <span class="qty">1</span>
+                            <button class="plus">+</button>
+                        </div>
                     </div>
 
-                    <button class="add_cart">담기</button>
+                    <div class="item_bottom">
+                        <div class="option_choose">
+                            <select class="option type">
+                                <option value="">- 옵션 선택 -</option>
+                                <option value="일코티">일코티</option>
+                                <option value="1000일티">1000일이나 버텼티 + 5,000원</option>
+                            </select>
+
+                            <select class="option size">
+                                <option value="">- 사이즈 선택 -</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                                <option>2XL</option>
+                                <option>3XL</option>
+                            </select>
+                        </div>
+                        <button class="add_cart">담기</button>
+                    </div>
                 </div>
 
             </div>
@@ -187,7 +209,7 @@
             });
 
             // 구매하기 버튼 클릭
-            $('#product_info').click(function () {
+            $('#cart_info').click(function () {
                 $('.overlay').fadeIn(200);
                 $('.bottom_sheet').addClass('active');
             });
@@ -277,13 +299,10 @@
 
                         let currentPrice = parseInt($(this).data('price'));
                         let newPrice = price * newQty;
-                        console.log("현재가격 : ", currentPrice);
-                        console.log("현재개수 : ", newQty);
-                        console.log("가격 : ", price);
 
                         $(this).data('qty', newQty);
                         $(this).find('.qty_text').text(newQty);
-                        $(this).find('.price_text').text(newPrice);
+                        $(this).find('.price_text').text(`(${newPrice.toLocaleString()}원)`);
 
                         found = true;
                     }
@@ -295,8 +314,8 @@
                       <li data-key="${key}" data-price="${price}" data-qty="${qty}">
                           <span>
                               ${name} / ${optionText} / 
-                              수량: <span class="qty_text">${qty}</span>
-                              <span class="price_text">(${price.toLocaleString()}원)</span>
+                              <span class="qty_text">${qty}</span>개
+                              <span class="price_text">(${(price * qty).toLocaleString()}원)</span>
                           </span>
                           <button class="delete_btn">삭제</button>
                       </li>
@@ -304,6 +323,13 @@
                 }
 
                 updateTotal();
+
+                const sheet = $('.sheet_content');
+                const cartTop = $('.cart_list').position().top;
+
+                sheet.animate({
+                    scrollTop: cartTop
+                }, 300);
             });
 
             // 삭제 버튼

@@ -63,8 +63,15 @@ body {
     width: 100%;
 }
 
+.title_txt {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
 .title_img {
-    height: 35px;
+    height: 40px;
 }
 
 .product_title {
@@ -118,8 +125,8 @@ body {
     /* 세로 가운데 */
 }
 
-#product_info {
-    width: 70%;
+#cart_info {
+    width: 80%;
     height: 70%;
     background: #353535;
     color: white;
@@ -150,8 +157,10 @@ body {
     position: fixed;
     bottom: -80%;
     /* 처음엔 숨김 */
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
+    max-width: 600px;
     height: 80%;
     background: white;
     border-radius: 15px 15px 0 0;
@@ -207,25 +216,17 @@ body {
 
 .product_item {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 17px;
+    padding-right: 17px;
     margin-bottom: 15px;
 }
 
 .quantity_box {
     display: flex;
     align-items: center;
-    gap: 10px;
     margin: 10px 0;
-}
-
-.quantity_box button {
-    width: 30px;
-    height: 30px;
-}
-
-.add_cart {
-    width: 100%;
-    height: 35px;
 }
 
 .cart_list {
@@ -256,4 +257,80 @@ body {
     padding-bottom: 5px;
     text-decoration: underline;
     text-underline-position: under;
+}
+
+.product_info {
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.info_txt {
+    align-items: center;
+}
+
+.product_txt {
+    margin-top: 13px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.item_bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.option_choose {
+    width: 60%;
+}
+
+.add_cart {
+    background: #353535;
+    color: white;
+    border: none;
+    font-size: 14px;
+}
+
+.minus {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border-top: 1px solid #353535;
+    border-bottom: 1px solid #353535;
+    border-left: 1px solid #353535;
+    border-right: none;
+    background: white;
+}
+
+.qty {
+    width: 35px;
+    height: 28.4px; 
+    border: 1px solid #353535;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.plus {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    border-top: 1px solid #353535;
+    border-bottom: 1px solid #353535;
+    border-left: none;
+    border-right: 1px solid #353535;
+    background: white;
+}
+
+.add_cart {
+    width: 96.6px;
+    height: 30px;
+}
+
+.option {
+    height: 30px;
 }
