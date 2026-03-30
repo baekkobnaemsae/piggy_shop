@@ -30,7 +30,6 @@ body {
 }
 
 .sale_info {
-    /* width: fit-content; */
     margin-left: 5px;
     font-size: 15px;
     color: rgb(151, 151, 151);
@@ -110,7 +109,7 @@ body {
     width: 100%;
 }
 
-.cart_button {
+.button_area {
     display: flex;
     position: sticky;
     bottom: 0;
@@ -125,7 +124,7 @@ body {
     /* 세로 가운데 */
 }
 
-#cart_info {
+.cart_button {
     width: 80%;
     height: 70%;
     background: #353535;
@@ -155,13 +154,13 @@ body {
 /* 하단 메뉴 */
 .bottom_sheet {
     position: fixed;
-    bottom: -80%;
+    bottom: -850%;
     /* 처음엔 숨김 */
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
     max-width: 600px;
-    height: 80%;
+    height: 85%;
     background: white;
     border-radius: 15px 15px 0 0;
     z-index: 999;
@@ -176,10 +175,107 @@ body {
 }
 
 .sheet_header {
+    padding: 20px;
+}
+
+.product_choose {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.choose_product {
     display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
+    justify-content: space-between; 
+    border: 1.5px solid #dbdbdb;
+    padding: 12px;
+    align-items: center;
+}
+
+.choose_option {
+    display: flex;
+    justify-content: space-between; 
+    border: 1.5px solid #dbdbdb;
+    padding: 12px;
+}
+
+.menu_choose {
+    color: #535353;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    transform: translateY(1px);
+}
+
+.menu_open {
+    height: 25px;
+    transition: 0.2s;
+    display: block;
+}
+
+.menu_open.active {
+    transform: rotate(180deg);
+}
+
+.product_open {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+
+    border: 1.5px solid #dbdbdb;
+    border-top: none;
+
+    display: none; /* 기본 숨김 */
+    z-index: 10;
+
+    box-sizing: border-box;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between; 
+    padding: 12px;
+    border: none;
+}
+
+.options:first-child {
+    border-bottom: 1px solid #ededed;
+}
+.options:nth-child(2){
+    border-bottom: 1px solid #ededed;
+}
+.options:nth-child(3) {
+    border-bottom: 1px solid #ededed;
+}
+
+.options span {
+    display: flex;
+    align-items: center;
+    /* height: 25px; */
+}
+
+.option_open {
+    display: none;
+}
+
+/* 옵션 표 느낌 */
+.option_open {
+    border: 1.5px solid #dbdbdb;
+    border-top: none;
+}
+
+.option_open .options {
+    border-bottom: 1px solid #ededed;
+}
+
+.option_open .options:last-child {
+    border-bottom: none;
+}
+
+.plus_price {
+    font-size: 14px;
+    color: #868686;
 }
 
 .sheet_content {
@@ -195,17 +291,11 @@ body {
 }
 
 .product_buy {
-    height: 45px;
+    height: 80px;
     width: 100%;
     display: none;
-    border-top: 2px solid #d3d3d3;
-}
-
-#buy_button {
-    width: 40%;
-    height: 100%;
-    background: white;
-    border: none;
+    border-top: 1px solid #d3d3d3;
+    background: #ffffff;
 }
 
 .bottom_sheet.active .product_buy {
@@ -223,12 +313,6 @@ body {
     margin-bottom: 15px;
 }
 
-.quantity_box {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-}
-
 .cart_list {
     margin-top: 20px;
 }
@@ -244,8 +328,9 @@ body {
 }
 
 .total_price {
+    display: flex;
     margin-top: 10px;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 /* 기본 상태 */
@@ -266,21 +351,11 @@ body {
     margin-bottom: 20px;
 }
 
-.info_txt {
-    align-items: center;
-}
-
 .product_txt {
     margin-top: 13px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     margin-left: 0;
     margin-right: 0;
-}
-
-.item_bottom {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
 }
 
 .option_choose {
@@ -294,21 +369,27 @@ body {
     font-size: 14px;
 }
 
+.quantity_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
 .minus {
     width: 30px;
     height: 30px;
-    font-size: 20px;
-    border-top: 1px solid #353535;
-    border-bottom: 1px solid #353535;
-    border-left: 1px solid #353535;
-    border-right: none;
+    font-size: 22px;
+    border: 1px solid #dbdbdb;
+    border-radius: 50%;
     background: white;
+    align-items: center;
+    margin: 0 !important;
 }
 
 .qty {
     width: 35px;
     height: 28.4px; 
-    border: 1px solid #353535;
     background: white;
     justify-content: center;
     align-items: center;
@@ -319,11 +400,11 @@ body {
     width: 30px;
     height: 30px;
     font-size: 20px;
-    border-top: 1px solid #353535;
-    border-bottom: 1px solid #353535;
-    border-left: none;
-    border-right: 1px solid #353535;
+    border: 1px solid #dbdbdb;
+    border-radius: 50%;
     background: white;
+    align-items: center;
+    margin: 0 !important;
 }
 
 .add_cart {
@@ -333,4 +414,50 @@ body {
 
 .option {
     height: 30px;
+}
+
+.add_info {
+    display: flex;
+    border: 1px solid #dbdbdb;
+    background-color: white;
+    justify-content: space-between; 
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.part1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+.part2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-right: 10px;
+}
+
+.remove_cart {
+    width: 20px;
+    height: 20px;
+
+    background-image: url('img/close.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+hr {
+    background:#dbdbdb;
+    height:1px;
+    border:0;
 }

@@ -58,19 +58,16 @@
 
         <div class="info_menu" id="ask_menu" style="display: none;">
             <br>
-            <!-- <h3>주문 확인이나 변경, 취소를 원하실 경우 <br> 아래 경로로 편하게 문의해 주세요. <br> 신속하게 처리해 드리겠습니다.</h3> -->
-            <!-- <h4>Q1. 주문한 내역을 확인하고 싶어요.</h4>
-            <h4>Q2. 주문 정보를 수정하고 싶어요.</h4> -->
             <h3>📢 상품, 배송, 결제 관련 문의는 아래 경로로 문의 부탁드립니다.</h3>
             <br>
             <div style="margin-left: 10px;">
                 <div style="display: flex;">
-                    <p><i class="fa-solid fa-comment"></i> 카카오톡 : 
+                    <p><i class="fa-solid fa-comment"></i> 카카오톡&nbsp;&nbsp;
                         <a class="ask_url" href="https://open.kakao.com/o/sgdD1Bci" target="_blank">배꼽냄새 오픈채팅</a>
                     </p>
                 </div>
                 <div style="display: flex;">
-                    <p><i class="fa-brands fa-instagram"></i> 인스타그램 : 
+                    <p><i class="fa-brands fa-instagram"></i> 인스타그램&nbsp;&nbsp;
                         <a class="ask_url" href="https://www.instagram.com/baekkobnaemsae?igsh=MTJyb20wc3hpbmVldQ==" target="_blank">@baekkobnaemsae</a>&nbsp;/
                         <a class="ask_url" href="https://www.instagram.com/zoxsaui?igsh=MXhjNHF6Z2R4a2swaw==" target="_blank">@zoxsaui</a>
                     </p>
@@ -78,8 +75,8 @@
             </div>
         </div>
 
-        <div class="cart_button">
-            <button id="cart_info">구매하기</button>
+        <div class="button_area">
+            <button class="cart_button" id="cart_info">구매하기</button>
         </div>
     </div>
 
@@ -87,111 +84,90 @@
 
     <div class="bottom_sheet">
         <div class="sheet_header">
-            <span>상품 선택</span>
-            <button class="close_btn"></button>
-        </div>
+            <div class="product_choose">
+                <div class="choose_product">
+                    <span class="menu_choose">상품 선택</span>
+                    <img class="menu_open" src="img/down.png" alt="아래">
+                </div>
 
-        <div class="sheet_content">
-            <div class="product_option_area">
-
-                <!-- 키링 -->
-                <div class="product_item">
-                    <div class="product_info">
-                        <div class="info_txt">
-                            <h3 class="product_txt">키링</h3>
-                            <span class="price_txt">6,000원</span>
-                        </div>
-                        <div class="quantity_box">
-                            <button class="minus">-</button>
-                            <span class="qty">1</span>
-                            <button class="plus">+</button>
-                        </div>
+                <div class="product_open">
+                    <div class="options">
+                        <span>레트로 키링</span>
+                        <span class="plus_price">+ 6,000원</span>
                     </div>
-                    <div class="item_bottom">
-                        <div class="option_choose"></div>
-                        <button class="add_cart">담기</button>
+                    <div class="options">
+                        <span>그립톡</span>
+                        <span class="plus_price">+ 3,500원</span>
+                    </div>
+                    <div class="options">
+                        <span>일코티</span>
+                        <span class="plus_price">+ 32,000원</span>
+                    </div>
+                    <div class="options">
+                        <span>1000일이나 버텼티</span>
+                        <span class="plus_price">+ 37,000원</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product_choose">
+                <div class="choose_option">
+                    <span class="menu_choose">옵션 선택</span>
+                    <img class="menu_open" src="img/down.png" alt="아래">
+                </div>
+
+            <div class="option_open">
+
+                <!-- 키링 옵션 -->
+                <div class="option_group" data-product="키링">
+                    <div class="options">옵션 없음</div>
+                </div>
+
+                <!-- 그립톡 옵션 -->
+                <div class="option_group" data-product="그립톡" style="display:none;">
+                    <div class="options">
+                        <span>부착형</span>
+                        <span class="plus_price">+ 2,000원</span>
+                    </div>
+                    <div class="options">
+                        <span>맥세이프</span>
+                        <span class="plus_price">+ 5,000원</span>
                     </div>
                 </div>
 
-                <!-- 그립톡 -->
-                <div class="product_item">
-                    <div class="product_info">
-                        <div class="info_txt">
-                            <h3 class="product_txt">그립톡</h3>
-                            <span class="price_txt">3,500원</span>
-                        </div>
-                        <div class="quantity_box">
-                            <button class="minus">-</button>
-                            <span class="qty">1</span>
-                            <button class="plus">+</button>
-                        </div>
-                    </div>
-
-                    <div class="item_bottom">
-                        <div class="option_choose">
-                            <select class="option">
-                                <option value="">- 옵션 선택 -</option>
-                                <option value="부착형">부착형 + 2,000원</option>
-                                <option value="맥세이프">맥세이프 + 5,000원</option>
-                            </select>
-                        </div>
-                        <button class="add_cart">담기</button>
-                    </div>
-                </div>
-
-                <!-- 티셔츠 -->
-                <div class="product_item">
-                    <div class="product_info">
-                        <div class="info_txt">
-                            <h3 class="product_txt">티셔츠</h3>
-                            <span class="price_txt">32,000원</span>
-                        </div>
-                        <div class="quantity_box">
-                            <button class="minus">-</button>
-                            <span class="qty">1</span>
-                            <button class="plus">+</button>
-                        </div>
-                    </div>
-
-                    <div class="item_bottom">
-                        <div class="option_choose">
-                            <select class="option type">
-                                <option value="">- 옵션 선택 -</option>
-                                <option value="일코티">일코티</option>
-                                <option value="1000일티">1000일이나 버텼티 + 5,000원</option>
-                            </select>
-
-                            <select class="option size">
-                                <option value="">- 사이즈 선택 -</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>2XL</option>
-                                <option>3XL</option>
-                            </select>
-                        </div>
-                        <button class="add_cart">담기</button>
-                    </div>
+                <!-- 티셔츠 옵션 -->
+                <div class="option_group" data-product="티셔츠" style="display:none;">
+                    <div class="options">M</div>
+                    <div class="options">L</div>
+                    <div class="options">XL</div>
+                    <div class="options">2XL</div>
+                    <div class="options">3XL</div>
                 </div>
 
             </div>
+            </div>
+        </div>
 
-            <hr>
-
+        <div class="sheet_content">
             <!-- 장바구니 영역 -->
             <div class="cart_list">
-                <h3>장바구니</h3>
-                <ul id="cart_items"></ul>
+                <h4>장바구니</h4>
+                <div id="result_text">
+                    <hr>
+                </div>
 
                 <div class="total_price">
-                    총 금액: <span id="total_price">0</span>원
+                    총 <div style="margin-left: 8px; color: #ff5160; font-weight: bold;"><span id="total_price">0</span>원</div>
                 </div>
             </div>
         </div>
 
         <div class="product_buy">
-            <button id="buy_button">이거 어디감</button>
+            <button class="cart_button" id="buy_button">구매하기</button>
         </div>
+        <!-- <div class="button_area">
+            <button class="cart_button" id="cart_info">구매하기</button>
+        </div> -->
     </div>
 
     <script>
@@ -220,123 +196,167 @@
                 $('.bottom_sheet').removeClass('active');
             });
 
-            // 수량 버튼
-            $('.plus').click(function () {
-                let qty = $(this).siblings('.qty');
-                qty.text(parseInt(qty.text()) + 1);
+            $('.choose_product').click(function () {
+                $(this).next('.product_open').stop().slideToggle(200);
+                $(this).find('.menu_open').toggleClass('active');
             });
 
-            $('.minus').click(function () {
-                let qty = $(this).siblings('.qty');
-                let current = parseInt(qty.text());
-                if (current > 1) qty.text(current - 1);
+            $('.choose_option').click(function () {
+                // 상품 선택 안했을 때 막기
+                if (!selectedProduct) {
+                    alert('먼저 상품을 선택해 주세요');
+                    return;
+                }
+                $(this).next('.option_open').stop().slideToggle(200);
+                $(this).find('.menu_open').toggleClass('active');
             });
 
-            // 총 금액 계산
-            function updateTotal() {
-                let total = 0;
+            let selectedProduct = '';
+            let selectedOption = '';
+            let basePrice = 0;
 
-                $('#cart_items li').each(function () {
-                    const price = parseInt($(this).data('price'));
-                    const qty = parseInt($(this).data('qty'));
-                    total += price * qty;
+            let cart = {}; // 누적 저장
+
+            // 상품 선택 클릭 (드롭다운 내부)
+            $('.product_open .options').click(function () {
+
+                selectedProduct = $(this).find('span:first').text();
+
+                // 가격 추출
+                const priceText = $(this).find('.plus_price').text();
+                basePrice = parseInt(priceText.replace(/[^0-9]/g, ''));
+
+                // 상품 선택 텍스트 변경
+                $('.choose_product .menu_choose').text(selectedProduct);
+
+                // 상품창 닫기
+                $('.product_open').slideUp(200);
+
+                // 옵션창 열기
+                $('.option_open').stop().slideDown(200);
+
+                // 옵션 메뉴 변경
+                $('.option_group').hide();
+
+                if (selectedProduct.includes('키링')) {
+                    $('[data-product="키링"]').show();
+                } else if (selectedProduct.includes('그립톡')) {
+                    $('[data-product="그립톡"]').show();
+                } else {
+                    $('[data-product="티셔츠"]').show();
+                }
+            });
+
+            // 옵션 선택
+            $('.option_open').on('click', '.options', function () {
+
+                selectedOption = $(this).text();
+                var str = selectedOption.indexOf('+');
+
+                if (str !== -1) {
+                    selectedOption = selectedOption.substring(0, str);
+                }
+
+                let optionPrice = 0;
+
+                const match = selectedOption.match(/\+ ([0-9,]+)원/);
+                if (match) {
+                    optionPrice = parseInt(match[1].replace(/,/g, ''));
+                }
+
+                const total = basePrice + optionPrice;
+
+                const key = selectedProduct + '_' + selectedOption;
+
+                // 누적 처리
+                if (cart[key]) {
+                    cart[key].qty += 1;
+                } else {
+                    cart[key] = {
+                        product: selectedProduct,
+                        option: selectedOption,
+                        price: total,
+                        qty: 1
+                    };
+                }
+
+                renderResult();
+
+                // 옵션창 닫기
+                $('.option_open').slideUp(200);
+                $('.choose_product .menu_choose').text('상품 선택');
+            });
+
+            $('#result_text').on('click', '.plus', function () {
+
+                const key = $(this).closest('.add_info').data('key');
+
+                cart[key].qty += 1;
+
+                renderResult();
+            });
+
+            $('#result_text').on('click', '.minus', function () {
+
+                const key = $(this).closest('.add_info').data('key');
+
+                if (cart[key].qty > 1) {
+                    cart[key].qty -= 1;
+                }
+
+                renderResult();
+            });
+
+            $('#result_text').on('click', '.remove_cart', function () {
+
+                const key = $(this).closest('.add_info').data('key');
+
+                delete cart[key];
+
+                renderResult();
+            });
+
+            // 결과 출력
+            function renderResult() {
+
+                let html = '';
+                let totalPrice = 0;
+
+                Object.keys(cart).forEach(key => {
+
+                    const item = cart[key];
+                    const itemTotal = item.price * item.qty;
+
+                    totalPrice += itemTotal;
+
+                    html += `
+                    <div class="add_info" data-key="${key}">
+                        <div class="part1">
+                            <div style="margin-top: 5px; margin-bottom: 15px;">
+                                <span>${item.product} / ${item.option}</span>
+                            </div>
+                            <div class="quantity_box">
+                                <button class="minus">-</button>
+                                <span class="qty">${item.qty}</span>
+                                <button class="plus">+</button>
+                            </div>
+                        </div>
+                        <div class="part2">
+                            <input class="remove_cart" type="button">
+                            <span style="margin-bottom: 10px;">${itemTotal.toLocaleString()}원</span>
+                        </div>
+                    </div>
+                    `;
                 });
 
-                $('#total_price').text(total.toLocaleString());
+                if (html === '') {
+                    html = '<hr>';
+                }
+
+                $('#result_text').html(html);
+
+                $('#total_price').text(totalPrice.toLocaleString());
             }
-
-            // 장바구니 담기
-            $('.add_cart').click(function () {
-
-                const parent = $(this).closest('.product_item');
-                const name = parent.find('h3').text();
-                let qty = parseInt(parent.find('.qty').text());
-
-                let optionText = '';
-                let price = parseInt(parent.find('.price').text());
-
-                // 키링
-                if (name === '키링') {
-                    optionText = '옵션 없음';
-                    price = 6000;
-                }
-
-                // 그립톡
-                if (name === '그립톡') {
-                    const opt = parent.find('.option').val();
-                    if (!opt) {
-                        alert('옵션 선택하세요');
-                        return;
-                    }
-
-                    optionText = opt;
-                    price = (opt === '부착형') ? 5500 : 8500;
-                }
-
-                // 티셔츠
-                if (name === '티셔츠') {
-                    const type = parent.find('.type').val();
-                    const size = parent.find('.size').val();
-
-                    if (!type || !size) {
-                        alert('옵션 선택하세요');
-                        return;
-                    }
-
-                    optionText = type + ' / ' + size;
-                    price = (type === '1000일티') ? 37000 : 32000;
-                }
-
-                const key = name + '_' + optionText;
-
-                let found = false;
-
-                // 같은 상품 있으면 수량 합치기
-                $('#cart_items li').each(function () {
-                    if ($(this).data('key') === key) {
-                        let currentQty = parseInt($(this).data('qty'));
-                        let newQty = currentQty + qty;
-
-                        let currentPrice = parseInt($(this).data('price'));
-                        let newPrice = price * newQty;
-
-                        $(this).data('qty', newQty);
-                        $(this).find('.qty_text').text(newQty);
-                        $(this).find('.price_text').text(`(${newPrice.toLocaleString()}원)`);
-
-                        found = true;
-                    }
-                });
-
-                // 없으면 새로 추가
-                if (!found) {
-                    $('#cart_items').append(`
-                      <li data-key="${key}" data-price="${price}" data-qty="${qty}">
-                          <span>
-                              ${name} / ${optionText} / 
-                              <span class="qty_text">${qty}</span>개
-                              <span class="price_text">(${(price * qty).toLocaleString()}원)</span>
-                          </span>
-                          <button class="delete_btn">삭제</button>
-                      </li>
-                  `);
-                }
-
-                updateTotal();
-
-                const sheet = $('.sheet_content');
-                const cartTop = $('.cart_list').position().top;
-
-                sheet.animate({
-                    scrollTop: cartTop
-                }, 300);
-            });
-
-            // 삭제 버튼
-            $(document).on('click', '.delete_btn', function () {
-                $(this).closest('li').remove();
-                updateTotal();
-            });
         });
     </script>
 
