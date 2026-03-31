@@ -105,7 +105,7 @@
                     </div>
                     <div class="options">
                         <span>그립톡</span>
-                        <span class="plus_price">+ 3,500원</span>
+                        <span class="plus_price">+ 5,500원</span>
                     </div>
                     <div class="options">
                         <span>1000일이나 버텼티</span>
@@ -135,11 +135,11 @@
                 <div class="option_group" data-product="그립톡" style="display:none;">
                     <div class="options">
                         <span>부착형</span>
-                        <span class="plus_price">+ 2,000원</span>
+                        <!-- <span class="plus_price">+ 2,000원</span> -->
                     </div>
                     <div class="options">
                         <span>맥세이프</span>
-                        <span class="plus_price">+ 5,000원</span>
+                        <span class="plus_price">+ 3,000원</span>
                     </div>
                 </div>
 
@@ -258,15 +258,15 @@
                 selectedOption = $(this).text();
                 var str = selectedOption.indexOf('+');
 
-                if (str !== -1) {
-                    selectedOption = selectedOption.substring(0, str);
-                }
-
                 let optionPrice = 0;
 
                 const match = selectedOption.match(/\+ ([0-9,]+)원/);
                 if (match) {
                     optionPrice = parseInt(match[1].replace(/,/g, ''));
+                }
+                
+                if (str !== -1) {
+                    selectedOption = selectedOption.substring(0, str);
                 }
 
                 const total = basePrice + optionPrice;
