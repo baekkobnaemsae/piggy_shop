@@ -3,8 +3,41 @@
     <head>
         <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
         <title>🐷 Shop</title>
+
+        <!-- CSS 연결 -->
+        <link rel="stylesheet" href="order.css">
+        
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
-        테스트 페이지
+        <div class="container">
+            <div class="header">
+                <img class="title_img" src="img/pig.png" alt="제목">
+                <p class="title_txt">1000일 기념 굿즈 판매</p>
+                <img class="title_img" src="img/pig2.png" alt="제목">
+            </div>
+
+            <div style="display: flex; justify-content: center;">
+                <div class="order_content">
+                    <p class="subject_txt">주문 상품</p>
+                    <div id="order_info" style="padding: 0 20px;">
+                        <div class="order_txt">
+                            <span>그립톡 / 부착형</span>
+                            <span class="cnt_txt">1개</span>
+                            <span>5,500원</span>
+                        </div>
+                        <div class="total_txt">
+                            <span>총 결제금액</span>
+                            <span style="margin-left: 3px; color: #ff5160; font-weight: bold;">5,500원</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button_area">
+                <button class="cart_button" id="cart_info">구매하기</button>
+            </div>
+        </div>
     </body>
 </html>
