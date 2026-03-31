@@ -135,6 +135,10 @@ body {
 }
 
 .info_menu {
+    background: #f3f7e8;
+}
+
+#ask_menu {
     margin-bottom: 300px;
 }
 
