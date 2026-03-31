@@ -37,6 +37,10 @@
                     <p class="sale_info">결제 방식</p>
                     <p class="info_text">무통장 입금</p>
                 </div>
+                <div style="display: flex; align-items: center; line-height: 1;">
+                    <p class="sale_info">배송 방식</p>
+                    <p class="info_text">GS반값택배</p>
+                </div>
             </div>
         </div>
 
@@ -66,10 +70,13 @@
                     </p>
                 </div>
                 <div style="display: flex;">
-                    <p><i class="fa-brands fa-instagram"></i> 인스타그램&nbsp;&nbsp;
+                    <div>
+                        <i class="fa-brands fa-instagram"></i> 인스타그램&nbsp;&nbsp;</p>
+                    </div>
+                    <div>
                         <a class="ask_url" href="https://www.instagram.com/baekkobnaemsae?igsh=MTJyb20wc3hpbmVldQ==" target="_blank">@baekkobnaemsae</a>&nbsp;/
                         <a class="ask_url" href="https://www.instagram.com/zoxsaui?igsh=MXhjNHF6Z2R4a2swaw==" target="_blank">@zoxsaui</a>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -200,7 +207,7 @@
             $('.choose_option').click(function () {
                 // 상품 선택 안했을 때 막기
                 if (!selectedProduct) {
-                    alert('먼저 상품을 선택해 주세요');
+                    alert('상품을 먼저 선택해 주세요');
                     return;
                 }
                 $(this).next('.option_open').stop().slideToggle(200);

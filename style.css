@@ -341,7 +341,6 @@ body {
 .ask_url {
     color: rgb(0, 117, 47);
     text-decoration: none;
-    /* 밑줄 제거 */
     cursor: pointer;
     padding-bottom: 5px;
     text-decoration: underline;
