@@ -49,7 +49,7 @@ body {
 
 .button_area {
     display: flex;
-    position: sticky;
+    position: fixed;
     bottom: 0;
     left: 0;
     height: 80px;
@@ -57,9 +57,7 @@ body {
     background: #ffffff;
     border-top: 1px solid #d3d3d3;
     justify-content: center;
-    /* 가로 가운데 */
     align-items: center;
-    /* 세로 가운데 */
 }
 
 .cart_button {
@@ -79,7 +77,7 @@ body {
 .subject_txt {
     text-align: left;
     font-size: 17.5px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .order_txt {
@@ -99,4 +97,60 @@ body {
 
 .total_txt {
     text-align: right;
+}
+
+.information {
+    width: 90%;
+    height: 40px;
+    margin-bottom: 15px;
+    border: 1px solid #dbdbdb;
+    padding-left: 10px;
+}
+
+.copy_box {
+    display: flex;
+    width: 80%;
+    border: 1px solid #dcdcdc;
+    background: #ffffff;
+}
+
+.copy_text {
+    /* width: ; */
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    font-weight: bold;
+    color: #4a6b3f;
+}
+
+.copy_btn {
+    width: 100px;
+    border: none;
+    background: #dfe8d2;
+    color: #4a6b3f;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    background: rgba(99, 99, 99, 0.8);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 10px 35px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#toast.show {
+    opacity: 1;
 }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        <title>🐷 Shop</title>
+
+        <!-- CSS 연결 -->
+        <link rel="stylesheet" href="order.css">
+        
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <img class="title_img" src="img/pig.png" alt="제목">
+                <p class="title_txt">1000일 기념 굿즈 판매</p>
+                <img class="title_img" src="img/pig2.png" alt="제목">
+            </div>
+
+            <div style="display: flex; justify-content: center; margin-bottom: 70px; margin-top: 100px;">
+                <span>주문자 성함과 입금자 성함이 동일해야 입금 확인이 가능합니다.</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                <span style="font-size: 27px;">농협은행</span>
+                <span style="font-size: 15px;">예금주 : 최지은</span>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <span style="font-size: 27px; color: #ff5160; font-weight: bold;">45,500원</span>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; margin-top: 30px;">
+                <div class="copy_box">
+                    <span class="copy_text">312 0016 7124 21</span>
+                    <button class="copy_btn">복사하기</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; padding-bottom: 100px;">
+                <span>구매해 주셔서 감사합니다!</span><br>
+                <span>정성 가득 담아 보내드릴게요♡</span>
+            </div>
+
+            <div id="toast">복사되었습니다!</div>
+
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('.copy_btn').click(function () {
+                    const text = $('.copy_text').text();
+
+                    const temp = $('<input>');
+                    $('body').append(temp);
+                    temp.val(text).select();
+                    document.execCommand('copy');
+                    temp.remove();
+
+                    $('#toast').addClass('show');
+
+                    setTimeout(function () {
+                        $('#toast').removeClass('show');
+                    }, 1500);
+                });
+            });
+        </script>
+    </body>
+</html>
