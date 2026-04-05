@@ -18,8 +18,10 @@
                 <img class="title_img" src="img/pig2.png" alt="제목">
             </div>
 
-            <div style="display: flex; justify-content: center; margin-bottom: 70px; margin-top: 100px;">
-                <span>주문자 성함과 입금자 성함이 동일해야 입금 확인이 가능합니다.</span>
+            <div style="display: flex; flex-direction: column; justify-content: center; margin-bottom: 60px; margin-top: 100px;">
+                <span style="font-weight: bold; font-size: 18px;">※ 필독 ※</span>
+                <span><b>주문자 성함</b>과 <b>입금자 성함</b>이 동일해야 <br> 입금 확인이 가능합니다.</span>
+                <span><b>04/13 18시</b>까지 입금 확인이 안될경우 <br> <b>구매가 자동으로 취소</b>됩니다.</span>
             </div>
 
             <div style="display: flex; flex-direction: column;">
@@ -38,12 +40,12 @@
                 </div>
             </div>
 
-            <div style="margin-top: 30px; padding-bottom: 100px;">
+            <div style="margin-top: 55px; padding-bottom: 100px;">
                 <span>구매해 주셔서 감사합니다!</span><br>
                 <span>정성 가득 담아 보내드릴게요♡</span>
             </div>
 
-            <div id="toast">복사되었습니다!</div>
+            <!-- <div id="toast">복사되었습니다!</div> -->
 
         </div>
 
@@ -58,11 +60,11 @@
                     document.execCommand('copy');
                     temp.remove();
 
-                    $('#toast').addClass('show');
+                    // $('#toast').addClass('show');
 
-                    setTimeout(function () {
-                        $('#toast').removeClass('show');
-                    }, 1500);
+                    // setTimeout(function () {
+                    //     $('#toast').removeClass('show');
+                    // }, 1500);
                 });
             });
         </script>
