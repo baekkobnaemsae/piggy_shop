@@ -7,6 +7,10 @@
     font-display: swap;
 }
 
+:root {
+  color-scheme: light only;
+}
+
 body {
     font-family: 'GMarketSans';
     margin: 0;
