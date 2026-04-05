@@ -9,6 +9,33 @@
         
         <!-- jQuery CDN -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+            import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyB2LWo9fYE3hjjaZ1sLR8dO0MhpHyWA7AM",
+                authDomain: "product-sales-e7675.firebaseapp.com",
+                projectId: "product-sales-e7675",
+                storageBucket: "product-sales-e7675.firebasestorage.app",
+                messagingSenderId: "809565552551",
+                appId: "1:809565552551:web:2eab8229b42b109a574082"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+
+            // 👉 전역으로 연결
+            window.db = db;
+            window.addDoc = addDoc;
+            window.collection = collection;
+        </script>
     </head>
     <body>
         <div class="container">
@@ -18,10 +45,17 @@
                 <img class="title_img" src="img/pig2.png" alt="제목">
             </div>
 
-            <div style="display: flex; flex-direction: column; justify-content: center; margin-bottom: 60px; margin-top: 100px;">
-                <span style="font-weight: bold; font-size: 18px;">※ 필독 ※</span>
-                <span><b>주문자 성함</b>과 <b>입금자 성함</b>이 동일해야 <br> 입금 확인이 가능합니다.</span>
-                <span><b>04/13 18시</b>까지 입금 확인이 안될경우 <br> <b>구매가 자동으로 취소</b>됩니다.</span>
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 60px; margin-top: 30px;">
+                <span style="font-weight: bold; font-size: 25px; margin-bottom: 10px;">주문이 완료되었습니다!</span>
+                <!-- <span style="font-size: 15px; margin-bottom: 10px;">※ 필독 ※</span> -->
+                <div style="display: flex; justify-content: center; flex-direction: column; text-align: left; ">
+                    <!-- <span style="margin-bottom: 5px; font-size: 13px;">※ <b>아래 계좌</b>로 입금을 해주셔야 최종 주문이 완료됩니다.</span>
+                    <span style="margin-bottom: 5px; font-size: 13px;">※ <b>주문자 성함</b>과 <b>입금자 성함</b>이 동일해야 <br> 입금 확인이 가능합니다.</span>
+                    <span style="font-size: 13px;">※ <b>04/13 18시</b>까지 입금 확인이 안될경우 <br> <b>구매가 자동으로 취소</b>됩니다.</span> -->
+                    <span style="margin-bottom: 5px; font-size: 13px;">※ <b>아래 계좌</b>로 입금을 해주셔야 최종 주문이 완료됩니다.</span>
+                    <span style="margin-bottom: 5px; font-size: 13px;">※ <b>주문자 성함</b>과 <b>입금자 성함</b>이 동일해야 입금 확인이 가능합니다.</span>
+                    <span style="font-size: 13px;">※ <b>04/13 18시</b>까지 입금 확인이 안될경우 <b>구매가 자동으로 취소</b>됩니다.</span>
+                </div>
             </div>
 
             <div style="display: flex; flex-direction: column;">
@@ -45,8 +79,6 @@
                 <span>정성 가득 담아 보내드릴게요♡</span>
             </div>
 
-            <!-- <div id="toast">복사되었습니다!</div> -->
-
         </div>
 
         <script>
@@ -60,11 +92,6 @@
                     document.execCommand('copy');
                     temp.remove();
 
-                    // $('#toast').addClass('show');
-
-                    // setTimeout(function () {
-                    //     $('#toast').removeClass('show');
-                    // }, 1500);
                 });
             });
         </script>
