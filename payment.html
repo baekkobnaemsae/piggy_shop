@@ -10,32 +10,6 @@
         <!-- jQuery CDN -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        <script type="module">
-            // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-            import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
-            // TODO: Add SDKs for Firebase products that you want to use
-            // https://firebase.google.com/docs/web/setup#available-libraries
-
-            // Your web app's Firebase configuration
-            const firebaseConfig = {
-                apiKey: "AIzaSyB2LWo9fYE3hjjaZ1sLR8dO0MhpHyWA7AM",
-                authDomain: "product-sales-e7675.firebaseapp.com",
-                projectId: "product-sales-e7675",
-                storageBucket: "product-sales-e7675.firebasestorage.app",
-                messagingSenderId: "809565552551",
-                appId: "1:809565552551:web:2eab8229b42b109a574082"
-            };
-
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const db = getFirestore(app);
-
-            // 👉 전역으로 연결
-            window.db = db;
-            window.addDoc = addDoc;
-            window.collection = collection;
-        </script>
     </head>
     <body>
         <div class="container">
@@ -45,16 +19,12 @@
                 <img class="title_img" src="img/pig2.png" alt="제목">
             </div>
 
-            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 60px; margin-top: 30px;">
-                <span style="font-weight: bold; font-size: 25px; margin-bottom: 10px;">주문이 완료되었습니다!</span>
-                <!-- <span style="font-size: 15px; margin-bottom: 10px;">※ 필독 ※</span> -->
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 60px; margin-top: 60px;">
+                <span style="font-weight: bold; font-size: 25px; margin-bottom: 15px;">주문이 완료되었습니다!</span>
                 <div style="display: flex; justify-content: center; flex-direction: column; text-align: left; ">
-                    <!-- <span style="margin-bottom: 5px; font-size: 13px;">※ <b>아래 계좌</b>로 입금을 해주셔야 최종 주문이 완료됩니다.</span>
-                    <span style="margin-bottom: 5px; font-size: 13px;">※ <b>주문자 성함</b>과 <b>입금자 성함</b>이 동일해야 <br> 입금 확인이 가능합니다.</span>
-                    <span style="font-size: 13px;">※ <b>04/13 18시</b>까지 입금 확인이 안될경우 <br> <b>구매가 자동으로 취소</b>됩니다.</span> -->
                     <span style="margin-bottom: 5px; font-size: 13px;">※ <b>아래 계좌</b>로 입금을 해주셔야 최종 주문이 완료됩니다.</span>
                     <span style="margin-bottom: 5px; font-size: 13px;">※ <b>주문자 성함</b>과 <b>입금자 성함</b>이 동일해야 입금 확인이 가능합니다.</span>
-                    <span style="font-size: 13px;">※ <b>04/13 18시</b>까지 입금 확인이 안될경우 <b>구매가 자동으로 취소</b>됩니다.</span>
+                    <span style="font-size: 13px;">※ <b>04/13 18시</b>까지 입금 확인이 안될 경우 구매가 <b>자동 취소</b>됩니다.</span>
                 </div>
             </div>
 
@@ -64,7 +34,7 @@
             </div>
 
             <div style="margin-top: 25px;">
-                <span style="font-size: 27px; color: #ff5160; font-weight: bold;">45,500원</span>
+                <span id="price_txt" style="font-size: 27px; color: #ff5160; font-weight: bold;"></span>
             </div>
 
             <div style="display: flex; justify-content: center; align-items: center; margin-top: 30px;">
@@ -83,7 +53,18 @@
 
         <script>
             $(document).ready(function () {
+                var cart = JSON.parse(localStorage.getItem('cartList'));
+                var totalPrice = 0;
+                
+                cart.forEach(function(item) {
+                    var price = parseInt(item.itemTotal, 10);
+                    totalPrice += price;
+                });
+                
+                $("#price_txt").text(totalPrice.toLocaleString()+"원");
+
                 $('.copy_btn').click(function () {
+
                     const text = $('.copy_text').text();
 
                     const temp = $('<input>');

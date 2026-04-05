@@ -171,12 +171,13 @@
         </div>
 
         <div class="product_buy">
-            <button class="cart_button" id="buy_button" onclick="location.href='order.html'">구매하기</button>
+            <button class="cart_button" id="buy_button">구매하기</button>
         </div>
     </div>
 
     <script>
         $(document).ready(function () {
+            localStorage.clear();
 
             $('.menu_list li').click(function () {
                 const type = $(this).data('type');
@@ -326,6 +327,7 @@
 
                 let html = '';
                 let totalPrice = 0;
+                var cartList = [];
 
                 Object.keys(cart).forEach(key => {
 
@@ -352,7 +354,18 @@
                         </div>
                     </div>
                     `;
+
+                    var cartSelect = {
+                        item: `${item.product}`.trim(),
+                        option: `${item.option}`.trim(),
+                        qty: `${item.qty}`.trim(),
+                        itemTotal: `${itemTotal}`.trim()
+                    };
+                    
+                    cartList.push(cartSelect);
                 });
+
+                localStorage.setItem("cartList", JSON.stringify(cartList));
 
                 if (html === '') {
                     html = '<hr>';
@@ -362,6 +375,16 @@
 
                 $('#total_price').text(totalPrice.toLocaleString());
             }
+
+            $('#buy_button').click(function() {
+                const cart = JSON.parse(localStorage.getItem('cartList'));
+
+                if (cart == null) {
+                    alert("상품을 선택해 주세요");
+                } else {
+                    location.href='order.html'
+                }
+            });
         });
     </script>
 

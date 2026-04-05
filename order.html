@@ -9,6 +9,33 @@
         
         <!-- jQuery CDN -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+            import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyB2LWo9fYE3hjjaZ1sLR8dO0MhpHyWA7AM",
+                authDomain: "product-sales-e7675.firebaseapp.com",
+                projectId: "product-sales-e7675",
+                storageBucket: "product-sales-e7675.firebasestorage.app",
+                messagingSenderId: "809565552551",
+                appId: "1:809565552551:web:2eab8229b42b109a574082"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+
+            // 👉 전역으로 연결
+            window.db = db;
+            window.addDoc = addDoc;
+            window.collection = collection;
+        </script>
     </head>
     <body>
         <div class="container">
@@ -22,20 +49,10 @@
                 <div class="order_content">
                     <p class="subject_txt">주문 상품</p>
                     <div id="order_info" style="padding: 0 20px;">
-                        <div class="order_txt">
-                            <span>그립톡 / 부착형</span>
-                            <span class="cnt_txt">1개</span>
-                            <span>5,500원</span>
-                        </div>
-                        <div class="order_txt">
-                            <span>1000일이나 버텼티 / 2XL</span>
-                            <span class="cnt_txt">1개</span>
-                            <span>37,000원</span>
-                        </div>
-                        <div class="total_txt">
-                            <span>총 결제금액</span>
-                            <span style="margin-left: 3px; color: #ff5160; font-weight: bold;">5,500원</span>
-                        </div>
+                    </div>
+                    <div class="total_txt">
+                        <span>총 결제금액</span>
+                        <span id="total_txt" style="margin-left: 3px; color: #ff5160; font-weight: bold;">5,500원</span>
                     </div>
                 </div>
             </div>
@@ -46,7 +63,7 @@
                     <div class="delivery_info" style="padding: 0 20px; text-align: left;">
                         <input id="name" class="information" placeholder="주문자 성함">
                         <input id="phone" class="information" placeholder="연락처 ex) 01022229999">
-                        <input id="phone" class="information" placeholder="택배 받으실 GS편의점 ex) 성남정석점">
+                        <input id="place" class="information" placeholder="택배 받으실 GS편의점 ex) 성남정석점">
                     </div>
                     <div style="margin-top: 20px;">
                         <span style="font-size: 12px; color: #626262;">배송 정보를 정확하게 입력해주세요.</span><br>
@@ -56,8 +73,78 @@
             </div>
 
             <div class="button_area">
-                <button class="cart_button" id="cart_info" onclick="location.href='payment.html'">구매하기</button>
+                <button class="cart_button" id="cart_info">구매하기</button>
             </div>
         </div>
+
+        <script>
+            $(document).ready(function() {
+                var cart = JSON.parse(localStorage.getItem('cartList'));
+                let html = '';
+                var totalPrice = 0;
+                let product = [];
+                let newItem = {};
+
+                cart.forEach(function(item) {
+                    var price = parseInt(item.itemTotal, 10);
+                    html += `
+                    <div class="order_txt">
+                        <span>${item.item} / ${item.option}</span>
+                        <span class="cnt_txt">${item.qty}개</span>
+                        <span>${price.toLocaleString()}원</span>
+                    </div>
+                    `;
+                    totalPrice += price;
+
+                    newItem = {
+                        item: item.item,
+                        option: item.option,
+                        qty: item.qty,
+                        itemTotal: item.itemTotal
+                    };
+
+                    product.push(newItem);
+                });
+
+                $('#order_info').html(html);
+                $("#total_txt").text(totalPrice.toLocaleString()+"원");
+
+               $('#cart_info').click(async function() {
+                    var userName = $("#name").val();
+                    var userPhone = $("#phone").val();
+                    var orderPlace = $("#place").val();
+
+                    if (userName == null || userName == "") {
+                        alert("주문사 성함을 입력해주세요");
+                    } else if (userPhone == null || userPhone == "") {
+                        alert("연락처를 입력해주세요.");
+                    } else if (orderPlace == null || orderPlace == "") {
+                        alert("GS편의점을 입력해주세요.");
+                    } else {
+                        const order = {
+                            product,
+                            user: {
+                                name: userName,
+                                phone: userPhone,
+                                place: orderPlace
+                            },
+                            createdAt: new Date()
+                        };
+
+                        try {
+                            await addDoc(collection(db, "orders"), order);
+
+                            location.replace('payment.html');
+
+                        } catch (e) {
+                            alert("주문에 실패했습니다. 자세한 사항은 관리자에게 문의해주세요.");
+                            console.error(e);
+                        }
+
+                    }
+
+               }); 
+            });
+        </script>
     </body>
 </html>
